@@ -1,0 +1,9 @@
+node_modules
+component
+private
+src
+dist
+cache
+npm-debug.log*
+.idea
+package-lock.json
