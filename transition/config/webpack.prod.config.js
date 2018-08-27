@@ -3,7 +3,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin')
+const WebpackMd5Hash = require('webpack-md5-hash')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.config')
 const webpack = require('webpack')
@@ -57,7 +58,6 @@ const webpackConfig = merge(baseWebpackConfig, {
             cacheGroups: {
                 lib: {
                     test: /[\\/]node_modules[\\/]/,
-                    //test: /react|react-dom|react-router|redux|react-redux|redux-thunk|immutable|n-zepto/,
                     minSize: 30000,
                     priority: 10,
                     name: 'lib',
@@ -81,12 +81,13 @@ const webpackConfig = merge(baseWebpackConfig, {
 })
 
 webpackConfig.plugins = webpackConfig.plugins.concat([
+    new InlineManifestWebpackPlugin('manifest'),
     new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash].css',
         chunkFilename: 'css/[name].[contenthash].css',
     }),
     new webpack.HashedModuleIdsPlugin(),
-    //new WebpackMd5Hash(),
+    new WebpackMd5Hash(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new BundleAnalyzerPlugin({
         analyzerHost: 'localhost',
