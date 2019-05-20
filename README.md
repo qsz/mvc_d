@@ -1,4 +1,4 @@
-### webpac4 + react15.x
+### webpac4 + react15.x 脚手架
 ---------------------
 * release: 经测试，属于稳定版本
 * transition: 对release版本进行的完善，但未经严格测试
