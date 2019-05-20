@@ -5,6 +5,8 @@
 * latest: 与webpack最新版本保持同步，不稳定
 
 * eg:
-> git clone https://github.com/qsz/webpack-react-practice.git
+```
+git clone https://github.com/qsz/webpack-react-practice.git
 cd latest
 npm install
+```
